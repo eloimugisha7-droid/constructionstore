@@ -1,0 +1,56 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Nouvelle commande</title>
+    <link rel="stylesheet" href="{% static 'boutique/style.css' %}">
+</head>
+<body>
+
+<div class="commande-page">
+    <div class="commande-box">
+
+        <h1>Nouvelle commande</h1>
+
+        {% if messages %}
+            {% for message in messages %}
+                <p class="message-erreur">{{ message }}</p>
+            {% endfor %}
+        {% endif %}
+
+        <form method="POST">
+            {% csrf_token %}
+
+            <label>Nom du client</label>
+            <input type="text" name="nom_client" required>
+
+            <label>Téléphone</label>
+            <input type="text" name="telephone" required>
+
+            <label>Adresse</label>
+            <input type="text" name="adresse">
+
+            <label>Produit</label>
+            <select name="produit" required>
+                {% for produit in produits %}
+                    <option value="{{ produit.id }}">
+                        {{ produit.nom }} - {{ produit.prix }} FBU - Stock : {{ produit.stock }}
+                    </option>
+                {% endfor %}
+            </select>
+
+            <label>Quantité</label>
+            <input type="number" name="quantite" value="1" min="1" required>
+
+            <button type="submit">Enregistrer et sortir le ticket</button>
+        </form>
+
+        <a href="{% url 'dashboard_employe' %}">Retour dashboard</a>
+
+    </div>
+</div>
+
+</body>
+</html>

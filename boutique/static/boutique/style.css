@@ -1,0 +1,267 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f5f5f5;
+}
+
+.navbar {
+    background: #1d3557;
+    color: white;
+    padding: 20px 8%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.navbar ul {
+    display: flex;
+    list-style: none;
+}
+
+.navbar li {
+    margin-left: 25px;
+}
+
+.navbar a {
+    color: white;
+    text-decoration: none;
+}
+
+.hero {
+    height: 80vh;
+    background: url("https://images.unsplash.com/photo-1503387762-592deb58ef4e") center/cover;
+}
+
+.overlay {
+    height: 100%;
+    background: rgba(0,0,0,0.6);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.overlay h1 {
+    font-size: 50px;
+    margin-bottom: 15px;
+}
+
+.overlay p {
+    font-size: 22px;
+    margin-bottom: 25px;
+}
+
+.btn {
+    background: #e63946;
+    color: white;
+    padding: 14px 25px;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.section {
+    padding: 60px 8%;
+}
+
+.section h2,
+.services h2 {
+    text-align: center;
+    margin-bottom: 35px;
+    font-size: 35px;
+}
+
+.produits {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 25px;
+}
+
+.card {
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+}
+
+.card img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+}
+
+.card-content {
+    padding: 20px;
+}
+
+.card-content h3 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.prix {
+    color: #e63946;
+    font-size: 22px;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+.btn-card {
+    display: inline-block;
+    margin-top: 10px;
+    background: #1d3557;
+    color: white;
+    padding: 12px 18px;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.services {
+    padding: 60px 8%;
+    background: #eaf4f4;
+}
+
+.service-box {
+    display: flex;
+    gap: 25px;
+    justify-content: center;
+}
+
+.service {
+    background: white;
+    padding: 25px;
+    width: 30%;
+    border-radius: 10px;
+    box-shadow: 0 5px 12px rgba(0,0,0,0.1);
+}
+
+footer {
+    background: #1d3557;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+
+.commande-page {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.commande-box {
+    background: white;
+    width: 450px;
+    padding: 35px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    margin-top: 15px;
+    font-weight: bold;
+}
+
+input {
+    padding: 12px;
+    margin-top: 5px;
+}
+
+button {
+    margin-top: 25px;
+    padding: 14px;
+    background: #1d3557;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+.admin-page {
+    padding: 40px 8%;
+}
+
+.admin-page h1,
+.admin-page h2 {
+    margin-bottom: 25px;
+}
+
+.stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.stat-card {
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 5px 12px rgba(0,0,0,0.12);
+    text-align: center;
+}
+
+.stat-card h3 {
+    color: #1d3557;
+    margin-bottom: 10px;
+}
+
+.stat-card p {
+    font-size: 26px;
+    font-weight: bold;
+    color: #e63946;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    margin-top: 20px;
+    margin-bottom: 40px;
+}
+
+table th {
+    background: #1d3557;
+    color: white;
+    padding: 12px;
+}
+
+table td {
+    padding: 12px;
+    border-bottom: 1px solid #ddd;
+    text-align: center;
+}
+
+select {
+    padding: 12px;
+    margin-top: 5px;
+}
+
+.message-erreur {
+    background: #ffdddd;
+    color: #a00000;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+}
+
+.btn-danger {
+    background: #e63946;
+    color: white;
+    padding: 8px 12px;
+    text-decoration: none;
+    border-radius: 5px;
+}

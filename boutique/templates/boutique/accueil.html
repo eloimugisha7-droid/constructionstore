@@ -1,0 +1,79 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Construction Store</title>
+    <link rel="stylesheet" href="{% static 'boutique/style.css' %}">
+</head>
+<body>
+
+<nav class="navbar">
+    <div class="logo">ConstructionStore</div>
+    <ul>
+        <li><a href="#">Accueil</a></li>
+        <li><a href="#produits">Produits</a></li>
+        <li><a href="#services">Services</a></li>
+    </ul>
+</nav>
+
+<header class="hero">
+    <div class="overlay">
+        <h1>Matériaux de Construction de Qualité</h1>
+        <p>Ciment, fer à béton, briques, tôles et plus encore</p>
+        <a href="#produits" class="btn">Voir les produits</a>
+    </div>
+</header>
+
+<section id="produits" class="section">
+    <h2>Nos Produits</h2>
+
+    <div class="produits">
+        {% for produit in produits %}
+        <div class="card">
+            {% if produit.image %}
+                <img src="{{ produit.image.url }}" alt="{{ produit.nom }}">
+            {% endif %}
+
+            <div class="card-content">
+                <h3>{{ produit.nom }}</h3>
+                <p>{{ produit.description }}</p>
+                <p class="prix">{{ produit.prix }} FBU</p>
+                <p>Stock : {{ produit.stock }}</p>
+                <a href="{% url 'commander' produit.id %}" class="btn-card">Commander</a>
+            </div>
+        </div>
+        {% empty %}
+        <p>Aucun produit disponible.</p>
+        {% endfor %}
+    </div>
+</section>
+
+<section id="services" class="services">
+    <h2>Nos Services</h2>
+
+    <div class="service-box">
+        <div class="service">
+            <h3>Livraison rapide</h3>
+            <p>Livraison sur chantier ou à domicile.</p>
+        </div>
+
+        <div class="service">
+            <h3>Produits fiables</h3>
+            <p>Matériaux solides pour vos constructions.</p>
+        </div>
+
+        <div class="service">
+            <h3>Commande facile</h3>
+            <p>Commandez vos produits en quelques clics.</p>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <p>© 2026 ConstructionStore</p>
+</footer>
+
+</body>
+</html>

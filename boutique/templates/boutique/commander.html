@@ -1,0 +1,40 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Commander</title>
+    <link rel="stylesheet" href="{% static 'boutique/style.css' %}">
+</head>
+<body>
+
+<div class="commande-page">
+    <div class="commande-box">
+        <h1>Commander : {{ produit.nom }}</h1>
+        <p class="prix">{{ produit.prix }} FBU</p>
+
+        <form method="POST">
+            {% csrf_token %}
+
+            <label>Nom complet</label>
+            <input type="text" name="nom_client" required>
+
+            <label>Téléphone</label>
+            <input type="text" name="telephone" required>
+
+            <label>Adresse</label>
+            <input type="text" name="adresse" required>
+
+            <label>Quantité</label>
+            <input type="number" name="quantite" value="1" min="1" required>
+
+            <button type="submit">Valider la commande</button>
+        </form>
+
+        <a href="{% url 'accueil' %}">Retour</a>
+    </div>
+</div>
+
+</body>
+</html>

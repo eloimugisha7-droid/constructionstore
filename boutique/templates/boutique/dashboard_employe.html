@@ -1,0 +1,100 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard Employé</title>
+    <link rel="stylesheet" href="{% static 'boutique/style.css' %}">
+</head>
+<body>
+
+<div class="admin-page">
+
+    <h1>Tableau de bord journalier</h1>
+
+    <div class="stats">
+        <div class="stat-card">
+            <h3>Chiffre d'affaires</h3>
+            <p>{{ chiffre_affaires }} FBU</p>
+        </div>
+
+        <div class="stat-card">
+            <h3>Commandes validées</h3>
+            <p>{{ nombre_commandes }}</p>
+        </div>
+
+        <div class="stat-card">
+            <h3>Clients</h3>
+            <p>{{ nombre_clients }}</p>
+        </div>
+
+        <div class="stat-card">
+            <h3>Produits vendus</h3>
+            <p>{{ produits_vendus }}</p>
+        </div>
+    </div>
+
+    <a href="{% url 'nouvelle_commande' %}" class="btn-card">Nouvelle commande</a>
+    <a href="{% url 'liste_commandes' %}" class="btn-card">Voir les commandes</a>
+    {% if user.is_superuser %}
+<h2>Exporter les ventes</h2>
+
+<form method="GET" action="{% url 'exporter_ventes' %}">
+    <label>Date début</label>
+    <input type="date" name="date_debut">
+
+    <label>Date fin</label>
+    <input type="date" name="date_fin">
+
+    <button type="submit">Télécharger les ventes</button>
+</form>
+{% endif %}
+    <h2>Stock restant</h2>
+
+    <table>
+        <tr>
+            <th>Produit</th>
+            <th>Catégorie</th>
+            <th>Prix</th>
+            <th>Stock</th>
+        </tr>
+
+        {% for produit in stock %}
+        <tr>
+            <td>{{ produit.nom }}</td>
+            <td>{{ produit.categorie }}</td>
+            <td>{{ produit.prix }} FBU</td>
+            <td>{{ produit.stock }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <h2>Commandes récentes</h2>
+
+    <table>
+        <tr>
+            <th>Client</th>
+            <th>Produit</th>
+            <th>Quantité</th>
+            <th>Total</th>
+            <th>Statut</th>
+            <th>Ticket</th>
+        </tr>
+
+        {% for commande in commandes_recentes %}
+        <tr>
+            <td>{{ commande.nom_client }}</td>
+            <td>{{ commande.produit.nom }}</td>
+            <td>{{ commande.quantite }}</td>
+            <td>{{ commande.total_commande }} FBU</td>
+            <td>{{ commande.get_statut_display }}</td>
+            <td><a href="{% url 'ticket' commande.id %}">Voir ticket</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+
+</div>
+
+</body>
+</html>

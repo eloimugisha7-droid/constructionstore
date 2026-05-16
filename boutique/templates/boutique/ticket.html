@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Ticket</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f5f5;
+        }
+
+        .ticket {
+            width: 350px;
+            background: white;
+            padding: 20px;
+            margin: 40px auto;
+            border: 1px solid #ddd;
+        }
+
+        .ticket h2 {
+            text-align: center;
+            margin-bottom: 5px;
+        }
+
+        .center {
+            text-align: center;
+        }
+
+        .line {
+            border-top: 1px dashed #000;
+            margin: 15px 0;
+        }
+
+        .total {
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .annulee {
+            color: red;
+            font-weight: bold;
+            text-align: center;
+            font-size: 20px;
+        }
+
+        .print-btn {
+            display: block;
+            width: 350px;
+            margin: 20px auto;
+            padding: 12px;
+            background: #1d3557;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        @media print {
+            .print-btn {
+                display: none;
+            }
+
+            body {
+                background: white;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="ticket">
+    <h2>CONSTRUCTION STORE</h2>
+    <p class="center">Ticket de commande</p>
+
+    {% if commande.statut == 'annulee' %}
+        <p class="annulee">COMMANDE ANNULÉE</p>
+    {% endif %}
+
+    <div class="line"></div>
+
+    <p><strong>Ticket N° :</strong> {{ commande.id }}</p>
+    <p><strong>Date :</strong> {{ commande.date_commande }}</p>
+    <p><strong>Client :</strong> {{ commande.nom_client }}</p>
+    <p><strong>Téléphone :</strong> {{ commande.telephone }}</p>
+
+    <div class="line"></div>
+
+    <p><strong>Produit :</strong> {{ commande.produit.nom }}</p>
+    <p><strong>Quantité :</strong> {{ commande.quantite }}</p>
+    <p><strong>Prix unitaire :</strong> {{ commande.prix_unitaire }} FBU</p>
+
+    <div class="line"></div>
+
+    <p class="total">Total : {{ commande.total_commande }} FBU</p>
+    <p><strong>Statut :</strong> {{ commande.get_statut_display }}</p>
+
+    <div class="line"></div>
+
+    {% if commande.employe %}
+        <p><strong>Employé :</strong> {{ commande.employe.username }}</p>
+    {% else %}
+        <p><strong>Commande :</strong> Client en ligne</p>
+    {% endif %}
+
+    <p class="center">Merci pour votre achat</p>
+</div>
+
+<button onclick="window.print()" class="print-btn">Imprimer le ticket</button>
+
+</body>
+</html>
